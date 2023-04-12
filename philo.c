@@ -6,11 +6,15 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:17:09 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/04/12 11:35:45 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/04/12 13:07:34 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo.h"
+
+
+
+
 
 int	loading_data(char **av, int ac, t_args *args)
 {
