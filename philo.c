@@ -6,15 +6,33 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:17:09 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/04/12 13:07:34 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:30:47 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo.h"
 
+// typedef struct badre_mutex_t
+// {
+// 	int lock;
+// }
 
+// void	badre_mutex_init(badre_mutex_t *t)
+// {
+// 	t->lock = 0;
+// }
 
+// void	badre_mutex_lock(badre_mutex_t *t)
+// {
+// 	while (t->lock != 0);
+// 	t->lock = 1;
+// }
 
+// void	badre_mutex_unlock(badre_mutex_t *t)
+// {
+// 	while (t->lock);
+// 	t->lock = 1;
+// }
 
 int	loading_data(char **av, int ac, t_args *args)
 {
@@ -54,19 +72,49 @@ int	check_error_and_load_data(int ac, char **av, t_args *args)
 	return (1);
 }
 
+void	*action(void *data)
+{
+	t_philo *philo;
+
+	philo = (t_philo *) data;
+
+	// philo.id
+	// philo.last_eat
+	// philo.num_eat
+	
+	// philo.data *
+	printf("%d\n",philo->id);
+
+	return (0);
+}
+
 void	create_philo(t_args *args)
 {
-	int number_of_p;
-	int i;
-	t_philo philo;
+	int		number_of_p;
+	int 	id;
+	t_philo *philo;
+	int		data;
 
-	i = -1;
-	number_of_p = args->n_of_philo + 1;
-	while(i++ < number_of_p)
+	philo[0].id = 0;
+	philo[0].data = &data;
+
+	philo[1].id = 1;
+	philo[1].data = &data;
+
+	
+
+	/*
+	id = 0;
+	number_of_p = args->n_of_philo;
+	while(id < number_of_p)
 	{
-		philo.philo = i;
-		if(pthread_create())
+		philo.id = id;
+		if (pthread_create(&(philo.thread), NULL, action, &philo))
+			return ;
+		id++;
+		usleep(50);
 	}
+	*/
 }
 
 int	main(int ac, char **av)
@@ -76,4 +124,5 @@ int	main(int ac, char **av)
 	if (!check_error_and_load_data(ac, av, &args))
 		return (0);
 	create_philo(&args);
+	return 0;
 }

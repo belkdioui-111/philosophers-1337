@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/04/12 11:33:36 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/04/14 22:25:39 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 # define PHILO_H
 
 
-# include<stdlib.h>
-# include<stdio.h>
-# include<pthread.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <pthread.h>
+# include <unistd.h>
 
 typedef struct args
 {
@@ -27,10 +28,16 @@ typedef struct args
 	int	must_eat;
 }t_args;
 
-typedef struct philo
+typedef struct s_philo
 {
-	pthread_t philo;
-}t_philo;
+	int 		id;
+	pthread_t 	thread;
+	t_args 		args;
+	long int	last_eat;
+	long int	num_of_eat;
+	int			*data;
+	struct s_philo *next;
+}	t_philo;
 
 int	ft_atoi(const char *str);
 
