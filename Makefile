@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 SRC = philo.c ft_atoi.c
+LIBFT = libft/libft.a
 
 OBJ = $(SRC:.c=.o)
 
@@ -21,9 +22,11 @@ NAME = philo
 all : $(NAME)
 
 $(NAME) : $(OBJ)
+	make bonus -C libft/
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean :
+	make fclean -C libft/
 	rm -rf $(OBJ) 
 
 fclean : clean

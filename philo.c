@@ -92,29 +92,35 @@ void	create_philo(t_args *args)
 {
 	int		number_of_p;
 	int 	id;
-	t_philo *philo;
-	int		data;
+	t_philo *head;
+	t_philo *node;
+	t_philo *tmp;
 
-	philo[0].id = 0;
-	philo[0].data = &data;
-
-	philo[1].id = 1;
-	philo[1].data = &data;
-
-	
-
-	/*
 	id = 0;
+	head = NULL;
 	number_of_p = args->n_of_philo;
 	while(id < number_of_p)
 	{
-		philo.id = id;
-		if (pthread_create(&(philo.thread), NULL, action, &philo))
-			return ;
+		node = malloc(sizeof(t_philo));
+		node->id = id;
+		node->next = NULL;
+		if (head == NULL){
+			head = node;
+			tmp = node;
+		}
+		else
+		{
+			tmp->next = node;
+			tmp = node;
+		}
 		id++;
-		usleep(50);
 	}
-	*/
+	tmp->next = head;
+	while(head)
+	{
+		printf("%d",head->id);
+		head=head->next;
+	}
 }
 
 int	main(int ac, char **av)
