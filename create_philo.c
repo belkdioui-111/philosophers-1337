@@ -40,30 +40,30 @@ void	*action(void *data)
 	t_philo *philo;
 
 	philo = (t_philo *) data;
-    philo->args->died = 1;
     printf("%d",philo->i);
+    printf("time%lld\n",get_curr_time());
 	return (0);
 }
 
-void	create_philo(t_args *args)
+int	create_philo_and_threads(t_philo *philos)
 {
-	t_philo *arr_philo;
     int     i;
     
-    args->died = 0;
-    i = 0;  
-    arr_philo = malloc(sizeof(t_philo) * args->n_of_philo);
-    pthread_mutex_init(&arr_philo->fork, NULL);
-    while(i < args->n_of_philo)
+    i = 0;
+    philos->args->f_time = get_curr_time();
+    while(i < philos->args->n_of_philo)
     {
-        arr_philo[i].args = args;
-        pthread_create(&arr_philo[i].thread, NULL, action, &arr_philo[i]);
-        // while(arr_philo[i].args->died == 1)
-        // {
-        //     break;
-        // }
-        arr_philo[i].i = i;
+        if(pthread_create(&philos[i].thread, NULL, action, &philos[i]) != 0)
+            return (0);
+        philos[i].i = i;
         i++;
-        usleep(10);
     }
+    i = 0;
+    while (i < philos->args->n_of_philo)
+    {
+        if(pthread_join(philos[i].thread, NULL) != 0)
+            return (0);
+        i++;
+    }
+    return (1);
 }
