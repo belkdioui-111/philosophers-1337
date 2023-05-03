@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/04/30 16:30:03 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:09:33 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct args
 	int	must_eat;
 	int	died;
 	long long f_time;
+	pthread_mutex_t print;
 }t_args;
 
 typedef struct s_philo

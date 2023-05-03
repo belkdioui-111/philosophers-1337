@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:05:15 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/04/30 20:13:11 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/03 19:26:02 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,15 @@
 void	*action(void *data)
 {
 	t_philo *philo;
-
 	philo = (t_philo *) data;
+    // while(1)
+    // {
+    pthread_mutex_lock(&philo->args->print);
     printf("%d",philo->i);
-    printf("time%lld\n",get_curr_time());
-	return (0);
+    printf("time%lld\n",get_curr_time() - philo->args->f_time);
+    pthread_mutex_unlock(&philo->args->print);
+    // }
+    return (0);
 }
 
 int	create_philo_and_threads(t_philo *philos)
@@ -51,6 +55,12 @@ int	create_philo_and_threads(t_philo *philos)
     
     i = 0;
     philos->args->f_time = get_curr_time();
+    while(i < philos->args->n_of_philo)
+    {
+        philos[i].args = philos->args;
+        i++;
+    }
+    i = 0;
     while(i < philos->args->n_of_philo)
     {
         if(pthread_create(&philos[i].thread, NULL, action, &philos[i]) != 0)
