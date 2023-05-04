@@ -12,42 +12,28 @@
 
 #include"philo.h"
 
-
-// typedef struct badre_mutex_t
-// {
-// 	int lock;
-// }
-
-// void	badre_mutex_init(badre_mutex_t *t)
-// {
-// 	t->lock = 0;
-// }
-
-// void	badre_mutex_lock(badre_mutex_t *t)
-// {
-// 	while (t->lock != 0);
-// 	t->lock = 1;
-// }
-
-// void	badre_mutex_unlock(badre_mutex_t *t)
-// {
-// 	while (t->lock);
-// 	t->lock = 1;
-// }
+void    take_fork(t_philo *philo)
+{
+    pthread_mutex_lock(&(philo->args->forks[philo->id]));
+    pthread_mutex_lock(&(philo->args->forks[philo->id + 1]));
+    pthread_mutex_lock(&(philo->args->print));
+    printf(" has taken a fork\n");
+    pthread_mutex_lock(&(philo->args->print));
+    pthread_mutex_unlock(&(philo->args->forks[philo->id]));
+    pthread_mutex_unlock(&(philo->args->forks[philo->id + 1]));
+}
 
 void	*action(void *data)
 {
 	t_philo *philo;
 	philo = (t_philo *) data;
-    // while(1)
-    // {
-    pthread_mutex_lock(&philo->args->print);
-    printf("%d",philo->i);
-    printf("time%lld\n",get_curr_time() - philo->args->f_time);
-    pthread_mutex_unlock(&philo->args->print);
-    // }
+    while(!philo->args->died)
+    {
+        printf("%d",philo->id);
+        // take_fork(philo);
+    }
     return (0);
-}
+} 
 
 int	create_philo_and_threads(t_philo *philos)
 {
@@ -55,7 +41,6 @@ int	create_philo_and_threads(t_philo *philos)
     
     i = 0;
     philos->args->f_time = get_curr_time();
-    while(i < philos->args->n_of_philo)
     {
         philos[i].args = philos->args;
         i++;
@@ -65,7 +50,6 @@ int	create_philo_and_threads(t_philo *philos)
     {
         if(pthread_create(&philos[i].thread, NULL, action, &philos[i]) != 0)
             return (0);
-        philos[i].i = i;
         i++;
     }
     i = 0;

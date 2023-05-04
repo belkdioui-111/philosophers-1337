@@ -20,7 +20,10 @@ int	main(int ac, char **av)
 	if (!check_error_and_load_data(ac, av, &args))
 		return (0);
 	philos = malloc(sizeof(t_philo) * args.n_of_philo);
+	if(!philos)
+		return(0);
 	philos->args = &args;
+	init_philos(philos);
 	if(!create_forks(philos))
 		return (0);
 	if(!create_philo_and_threads(philos))

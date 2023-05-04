@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = philo.c ft_atoi.c check_errors_and_loading_data.c create_philo.c create_forks.c get_curr_time.c
+SRC = philo.c ft_atoi.c check_errors_and_loading_data.c create_philo.c create_forks.c get_curr_time.c init_philo.c
 LIBFT = libft/libft.a
 
 OBJ = $(SRC:.c=.o)

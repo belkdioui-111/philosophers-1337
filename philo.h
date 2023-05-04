@@ -30,6 +30,8 @@ typedef struct args
 	int	died;
 	long long f_time;
 	pthread_mutex_t print;
+	pthread_mutex_t	*forks;
+
 }t_args;
 
 typedef struct s_philo
@@ -38,8 +40,8 @@ typedef struct s_philo
 	t_args			*args;
 	long int		last_eat;
 	long int		num_of_eat;
-	pthread_mutex_t	*forks;
-	int i;
+	int fork;
+	int id;
 }	t_philo;
 
 int		ft_atoi(const char *str);
@@ -47,6 +49,7 @@ int		check_error_and_load_data(int ac, char **av, t_args *args);
 int		create_forks(t_philo *philos);
 int		create_philo_and_threads(t_philo *philos);
 long long	get_curr_time();
+void init_philos(t_philo *philos);
 long long diff_bet_first_now(long long first, long long now);
 
 
