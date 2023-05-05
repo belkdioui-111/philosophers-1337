@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:17:09 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/03 19:24:55 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/04 22:50:29 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,8 @@ int	main(int ac, char **av)
 	philos = malloc(sizeof(t_philo) * args.n_of_philo);
 	if(!philos)
 		return(0);
-	philos->args = &args;
-	init_philos(philos);
-	if(!create_forks(philos))
+	init_philo(philos, &args);
+	if(!create_forks(&args))
 		return (0);
 	if(!create_philo_and_threads(philos))
 		return (0);

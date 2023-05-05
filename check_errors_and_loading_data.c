@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:03:31 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/04/30 13:06:02 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/05 18:50:29 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	loading_data(char **av, int ac, t_args *args)
 	args->n_of_philo = ft_atoi(av[1]);
 	if (args->n_of_philo <= 0)
 		return (0);
-	args->t_to_die = ft_atoi(av[2]) * 1000;
+	args->t_to_die = ft_atoi(av[2]);
 	if (args->t_to_die < 0)
 		return (0);
 	args->t_to_eat = ft_atoi(av[3]) * 1000;
@@ -39,12 +39,12 @@ int	check_error_and_load_data(int ac, char **av, t_args *args)
 {
 	if (ac != 5 && ac != 6)
 	{
-		printf("Error");
+		printf("Error\n");
 		return (0);
 	}
 	if (!loading_data(av, ac, args))
 	{
-		printf("Error");
+		printf("Error\n");
 		return (0);
 	}
 	return (1);
