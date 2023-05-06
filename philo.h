@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/05 18:59:54 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:08:13 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct args
 {
+	int ac;
 	int	n_of_philo;
 	int	t_to_die;
 	int	t_to_eat;
@@ -51,6 +52,7 @@ int			create_philo_and_threads(t_philo *philos);
 long long	get_curr_time();
 void 		init_philo(t_philo *philos, t_args *args);
 long long 	diff_bet_first_now(long long first, long long now);
+void ft_usleep(unsigned int msec);
 
 
 #endif

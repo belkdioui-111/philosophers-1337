@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:05:15 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/05 19:01:14 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/06 20:11:30 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void ft_sleep(t_philo *philo)
 {
     printf("%lld %d is sleeping\n",get_curr_time() - philo->args->f_time, philo->id + 1);
-    usleep(philo->args->t_to_sleep);
+    ft_usleep(philo->args->t_to_sleep);
 }
 void ft_eating(t_philo *philo)
 {
     printf("%lld %d is eating\n",get_curr_time() - philo->args->f_time, philo->id + 1);
-    usleep(philo->args->t_to_eat);
+    ft_usleep(philo->args->t_to_eat);
     philo->num_of_eat++;    
     philo->last_eat = get_curr_time();
 }
@@ -41,7 +41,7 @@ void *action(void *data)
         pthread_mutex_unlock(&(philo->args->forks[philo->id]));
         pthread_mutex_unlock(&(philo->args->forks[(philo->id + 1) % philo->args->n_of_philo]));
         ft_sleep(philo);
-        if(philo->num_of_eat >= philo->args->must_eat)
+        if(philo->num_of_eat >= philo->args->must_eat && philo->args->must_eat > 0)
         {
             philo->end = 1;
             break;
@@ -62,7 +62,7 @@ int create_philo_and_threads(t_philo *philos)
             return (0);
         i = i + 2;
     }
-    usleep(500);
+    usleep(85);
     i = 1;
     while (i < philos->args->n_of_philo)
     {
