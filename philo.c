@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:17:09 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/06 16:05:21 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/07 14:48:56 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 	if(!philos)
 		return(0);
 	init_philo(philos, args);
-	if(!create_forks(args))
+	if(!create_forks(args, philos))
 		return (0);
 	if(!create_philo_and_threads(philos))
 		return (0);

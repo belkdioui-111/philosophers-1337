@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/06 20:08:13 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/07 15:45:52 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ typedef struct args
 	int	must_eat;
 	int	died;
 	long long f_time;
-	pthread_mutex_t print;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	mutex_died;
+	pthread_mutex_t *mutex_incre;
+	pthread_mutex_t print;
 }t_args;
 
 typedef struct s_philo
@@ -47,11 +49,10 @@ typedef struct s_philo
 
 int			ft_atoi(const char *str);
 int			check_error_and_load_data(int ac, char **av, t_args *args);
-int			create_forks(t_args *args);
+int			create_forks(t_args *args, t_philo *philos);
 int			create_philo_and_threads(t_philo *philos);
 long long	get_curr_time();
 void 		init_philo(t_philo *philos, t_args *args);
-long long 	diff_bet_first_now(long long first, long long now);
 void ft_usleep(unsigned int msec);
 
 
