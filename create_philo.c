@@ -44,7 +44,7 @@ void *action(void *data)
     t_philo *philo;
 
     philo = (t_philo *)data;
-    while(1)
+    while(philo->args->died == 0)
     {
         ft_print(philo, "is thinking");
         pthread_mutex_lock(&(philo->args->forks[philo->id]));
@@ -95,12 +95,14 @@ int create_philo_and_threads(t_philo *philos)
             j++;
         if(j == philos[i].args->n_of_philo)
             break;
+        pthread_mutex_lock(&philos[i].args->mutex_died);
         if(get_curr_time() - philos[i].last_eat >= philos[i].args->t_to_die)
         {
             philos[i].args->died = 1;
             printf("%lld %d %s\n", get_curr_time() - philos[i].args->f_time, philos[i].id + 1, "died");
             break;
         }
+        pthread_mutex_unlock(&philos[i].args->mutex_died);
         i++;
         if(philos->args->n_of_philo == i)
             i = 0;

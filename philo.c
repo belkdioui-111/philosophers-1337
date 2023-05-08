@@ -18,6 +18,8 @@ int	main(int ac, char **av)
 	t_philo *philos;
 	
 	args = malloc(sizeof(t_args));
+	if(!args)
+		return (0);
 	if (!check_error_and_load_data(ac, av, args))
 		return (0);
 	philos = malloc(sizeof(t_philo) * args->n_of_philo);
