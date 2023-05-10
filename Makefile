@@ -6,7 +6,7 @@
 #    By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/09 14:59:00 by bel-kdio          #+#    #+#              #
-#    Updated: 2023/05/06 18:30:20 by bel-kdio         ###   ########.fr        #
+#    Updated: 2023/05/10 13:04:49 by bel-kdio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ CC = cc
 
 #-fsanitize=thread
 
-CFLAGS = -Wall -Wextra -Werror 
+CFLAGS = #-Wall -Wextra -Werror #-fsanitize=thread
 NAME = philo
 
 all : $(NAME)
