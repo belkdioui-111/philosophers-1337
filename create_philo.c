@@ -6,15 +6,13 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:05:15 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/11 12:39:07 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/11 17:39:29 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
 /*
-	data race in must eat
-	when ihave one philo
 	leaks
 */
 
@@ -40,10 +38,15 @@ int	checker(t_philo *philos, int *i)
 {
 	static int	j;
 
-	if (philos[*i].end)
+	if (has_eaten_enough(&philos[*i]))
 		j++;
 	if (j == philos[*i].args->n_of_philo)
+	{
+		pthread_mutex_lock(&philos->args->mutex_died);
+		philos->args->died = 1;
+		pthread_mutex_unlock(&philos->args->mutex_died);
 		return (0);
+	}
 	pthread_mutex_lock(&philos[*i].args->mutex_died);
 	if (has_died(&philos[*i]))
 	{
@@ -79,11 +82,7 @@ void	*action(void *ptr)
 		pthread_mutex_unlock(&(philo->args->forks[(philo->id + 1)
 				% philo->args->n_of_philo]));
 		ft_sleep(philo);
-		if (max_of_eat(philo))
-		{
-			philo->end = 1;
-			break ;
-		}
+		check_number_of_meals(philo);
 	}
 	return (0);
 }
@@ -112,7 +111,7 @@ int	create_philo_and_threads(t_philo *philos)
 	while (i < philos->args->n_of_philo)
 	{
 		if (!checker(philos, &i))
-			break ;
+			return (0);
 	}
 	return (1);
 }

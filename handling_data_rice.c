@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:57:41 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/11 10:04:46 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/11 16:40:44 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,27 @@ void	ft_print(t_philo *philo, char *str)
 	}
 }
 
-int	max_of_eat(t_philo *philo)
+int	check_number_of_meals(t_philo *philo)
+{
+	int	ret;
+
+	ret = 0;
+	if (philo->args->must_eat <= 0)
+		return (0);
+	pthread_mutex_lock(&philo->args->mutex_incre[philo->id]);
+	if (philo->num_of_eat >= philo->args->must_eat)
+	{
+		philo->end = 1;
+		ret = 1;
+	}
+	pthread_mutex_unlock(&philo->args->mutex_incre[philo->id]);
+	return (1);
+}
+
+int	has_died(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->args->mutex_incre[philo->id]);
-	if (philo->num_of_eat >= philo->args->must_eat && philo->args->must_eat > 0)
+	if (get_curr_time() - philo->last_eat >= philo->args->t_to_die)
 	{
 		pthread_mutex_unlock(&philo->args->mutex_incre[philo->id]);
 		return (1);
@@ -47,10 +64,10 @@ int	max_of_eat(t_philo *philo)
 	return (0);
 }
 
-int	has_died(t_philo *philo)
+int	has_eaten_enough(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->args->mutex_incre[philo->id]);
-	if (get_curr_time() - philo->last_eat >= philo->args->t_to_die)
+	if (philo->end)
 	{
 		pthread_mutex_unlock(&philo->args->mutex_incre[philo->id]);
 		return (1);

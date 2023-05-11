@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/11 10:01:49 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:53:35 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void		init_philo(t_philo *philos, t_args *args);
 
 // handling data rice
 int			should_stop(t_philo *philo);
+int			check_number_of_meals(t_philo *philo);
 void		ft_print(t_philo *philo, char *str);
-int			max_of_eat(t_philo *philo);
 int			has_died(t_philo *philo);
+int			has_eaten_enough(t_philo *philo);
 
 int			create_philo_and_threads(t_philo *philos);
 
