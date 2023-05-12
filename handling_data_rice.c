@@ -37,16 +37,12 @@ void	ft_print(t_philo *philo, char *str)
 
 int	check_number_of_meals(t_philo *philo)
 {
-	int	ret;
-
-	ret = 0;
 	if (philo->args->must_eat <= 0)
 		return (0);
 	pthread_mutex_lock(&philo->args->mutex_incre[philo->id]);
 	if (philo->num_of_eat >= philo->args->must_eat)
 	{
 		philo->end = 1;
-		ret = 1;
 	}
 	pthread_mutex_unlock(&philo->args->mutex_incre[philo->id]);
 	return (1);

@@ -19,7 +19,7 @@ void	ft_usleep(unsigned int msec, t_philo *philo)
 	start = get_curr_time();
 	while (1)
 	{
-		usleep(85);
+		usleep(80);
 		if (get_curr_time() - start >= msec || should_stop(philo))
 			break ;
 	}
