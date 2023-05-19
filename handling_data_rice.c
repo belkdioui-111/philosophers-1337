@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:57:41 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/11 16:40:44 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:37:03 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,7 @@ int	check_number_of_meals(t_philo *philo)
 		return (0);
 	pthread_mutex_lock(&philo->args->mutex_incre[philo->id]);
 	if (philo->num_of_eat >= philo->args->must_eat)
-	{
 		philo->end = 1;
-	}
 	pthread_mutex_unlock(&philo->args->mutex_incre[philo->id]);
 	return (1);
 }

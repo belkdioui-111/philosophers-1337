@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:03:31 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/11 09:31:51 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/19 08:15:32 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,17 @@ int	loading_data(char **av, int ac, t_args *args)
 	return (1);
 }
 
-int	check_error_and_load_data(int ac, char **av, t_args *args)
+int	check_error_and_load_data(int ac, char **av, t_args **args)
 {
+	*args = malloc(sizeof(t_args));
+	if (!(*args))
+		return (0);
 	if (ac != 5 && ac != 6)
 	{
 		printf("Error\n");
 		return (0);
 	}
-	if (!loading_data(av, ac, args))
+	if (!loading_data(av, ac, *args))
 	{
 		printf("Error\n");
 		return (0);

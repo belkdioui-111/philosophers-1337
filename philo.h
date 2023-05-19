@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/11 15:53:35 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/19 20:35:10 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ long long	get_curr_time(void);
 void		ft_usleep(unsigned int msec, t_philo *philo);
 
 //check errors and load data in struct args
-int			check_error_and_load_data(int ac, char **av, t_args *args);
+int			check_error_and_load_data(int ac, char **av, t_args **args);
 
 //create forks
 int			create_forks(t_args *args, t_philo *philos);
 
 //initalisation of philo
-void		init_philo(t_philo *philos, t_args *args);
+int			init_philo(t_philo **philos, t_args *args);
 
 // handling data rice
 int			should_stop(t_philo *philo);
@@ -68,6 +68,14 @@ int			check_number_of_meals(t_philo *philo);
 void		ft_print(t_philo *philo, char *str);
 int			has_died(t_philo *philo);
 int			has_eaten_enough(t_philo *philo);
+
+// action
+void		*action(void *ptr);
+int			checker(t_philo *philos, int *i);
+
+//free
+void		free_all(int num_free, t_philo *philo, t_args *args);
+void		free_mutexes(t_args *args, t_philo *philos, int max_index);
 
 int			create_philo_and_threads(t_philo *philos);
 
