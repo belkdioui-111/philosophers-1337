@@ -6,19 +6,29 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:17:09 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/19 20:35:53 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/21 09:27:14 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"philo.h"
 
+void	join(t_philo *philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < philos->args->n_of_philo)
+	{
+		pthread_join(philos[i].thread, NULL);
+		i++;
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_args	*args;
 	t_philo	*philos;
-	int		i;
 
-	i = 0;
 	if (!check_error_and_load_data(ac, av, &args))
 		return (1);
 	if (!init_philo(&philos, args))
@@ -33,11 +43,7 @@ int	main(int ac, char **av)
 	}
 	if (!create_philo_and_threads(philos))
 	{
-		while (i < philos->args->n_of_philo)
-		{
-			pthread_join(philos[i].thread, NULL);
-			i++;
-		}
+		join(philos);
 		free_mutexes(args, philos, philos->args->n_of_philo);
 		return (0);
 	}

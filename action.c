@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 08:28:53 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/19 20:36:07 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/21 09:22:56 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,15 @@ int	checker(t_philo *philos, int *i)
 		lock_and_unlock_died(philos);
 		return (0);
 	}
-	pthread_mutex_lock(&philos[*i].args->mutex_died);
 	if (has_died(&philos[*i]))
 	{
-		philos[*i].args->died = 1;
+		lock_and_unlock_died(philos);
 		pthread_mutex_lock(&philos[*i].args->print);
 		printf("%lld %d %s\n", get_curr_time() - philos[*i].args->f_time,
 			philos[*i].id + 1, "died");
-		pthread_mutex_unlock(&philos[*i].args->mutex_died);
+		pthread_mutex_unlock(&philos[*i].args->print);
 		return (0);
 	}
-	pthread_mutex_unlock(&philos[*i].args->mutex_died);
 	(*i)++;
 	if (philos->args->n_of_philo == *i)
 		*i = 0;

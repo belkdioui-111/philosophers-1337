@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:57:41 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/19 20:37:03 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/21 09:23:19 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	should_stop(t_philo *philo)
 
 void	ft_print(t_philo *philo, char *str)
 {
+	pthread_mutex_lock(&philo->args->print);
 	if (should_stop(philo) == 0)
 	{
-		pthread_mutex_lock(&philo->args->print);
 		printf("%lld %d %s\n", get_curr_time() - philo->args->f_time,
 			philo->id + 1, str);
-		pthread_mutex_unlock(&(philo->args->print));
 	}
+	pthread_mutex_unlock(&(philo->args->print));
 }
 
 int	check_number_of_meals(t_philo *philo)
