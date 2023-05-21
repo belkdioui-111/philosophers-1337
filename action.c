@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 08:28:53 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/21 10:28:32 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/21 10:34:09 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	*action(void *ptr)
 		ft_print(philo, "is thinking");
 		pthread_mutex_lock(&(philo->args->forks[philo->id]));
 		ft_print(philo, "has taken a fork");
-		if(philo->args->n_of_philo !=1 )
+		if (philo->args->n_of_philo != 1)
 		{
 			pthread_mutex_lock(&(philo->args->forks[(philo->id + 1)
 					% philo->args->n_of_philo]));
@@ -83,7 +83,7 @@ void	*action(void *ptr)
 					% philo->args->n_of_philo]));
 		}
 		else
-			break;
+			break ;
 		pthread_mutex_unlock(&(philo->args->forks[philo->id]));
 		ft_sleep(philo);
 		check_number_of_meals(philo);
