@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:17:09 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 12:46:37 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:59:52 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	create_sema(args);
-	create_philo(philos);
-	sem_wait(philos->args->sem_died);
-	while(i < args->n_of_philo)
-	{
-		kill(args->pid[i], SIGKILL);
-		i++;
-	}
+	create_philo(philos);	
 	return (0);
 }

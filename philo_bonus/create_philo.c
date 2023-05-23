@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:05:15 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 12:47:45 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 19:11:43 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ int	create_philo(t_philo *philos)
 			return (-1);
 		else if (philos->args->pid[i] == 0)
 			action(&philos[i]);
-		usleep(100);
+		i++;
+	}
+	waitpid(-1, 0, 0);
+	i = 0;
+	while(i < philos->args->n_of_philo)
+	{
+		kill(philos->args->pid[i], SIGKILL);
 		i++;
 	}
 	return (0);
