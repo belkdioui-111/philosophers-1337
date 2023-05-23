@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 12:34:21 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:16:11 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct args
 	int			died;
 	long long	f_time;
 	sem_t		*forks;
+	sem_t		*eat;
 	sem_t		*sem_died;
 	sem_t		*sem_incre;
 	sem_t		*print;

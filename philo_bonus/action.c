@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 08:28:53 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 20:00:19 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:29:12 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,10 @@ void	*checker(void *ptr)
 	philos = (t_philo *)ptr;
 	while (1)
 	{
-		if (has_eaten_enough(philos))
-			j++;
-		if (j == philos->args->n_of_philo)
+		if (philos->args->num_of_eat == philos->args->n_of_philo)
 		{
-			sem_wait(philos->args->print);
-			sem_wait(philos->args->sem_incre);
-			philos->args->died = 1;
-			sem_post(philos->args->sem_incre);
-			sem_post(philos->args->sem_died);
+			philos->args->num_of_eat +=1;
+			sem_post(philos->args->sem_post);
 			return (0);
 		}
 		sem_wait(philos->args->sem_died);
@@ -89,8 +84,7 @@ void	action(t_philo	*philo)
 		sem_post(philo->args->forks);
 		if(ft_sleep(philo))
 			break ;
-		// check_number_of_meals(philo);
 	}
+	pthread_join(philo->thread, NULL);
 	exit(1);
-	// pthread_join(philo->thread, NULL);
 }

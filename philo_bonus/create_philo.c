@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:05:15 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 19:11:43 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:24:12 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	create_philo(t_philo *philos)
 
 	i = 0;
 	philos->args->f_time = get_curr_time();
+	
 	while (i < philos->args->n_of_philo)
 	{
 		philos->args->pid[i] = fork();

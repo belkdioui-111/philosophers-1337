@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 09:57:41 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 20:00:54 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 20:11:25 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,9 @@ int	has_died(t_philo *philo)
 
 int	has_eaten_enough(t_philo *philo)
 {
-	sem_wait(philo->args->sem_incre);
 	if (philo->end)
 	{
-		sem_post(philo->args->sem_incre);
 		return (1);
 	}
-	sem_post(philo->args->sem_incre);
 	return (0);
 }
