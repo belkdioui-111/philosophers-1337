@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 22:38:06 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/21 15:47:13 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:37:19 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_usleep(unsigned int msec, t_philo *philo)
 {
 	long long	start;
-	
+
 	start = get_curr_time();
 	while (1)
 	{

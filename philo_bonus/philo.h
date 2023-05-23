@@ -6,15 +6,15 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/21 19:14:38 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:34:21 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <semaphore.h>
-#include <fcntl.h>
+# include <semaphore.h>
+# include <fcntl.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <pthread.h>
