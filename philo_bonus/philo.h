@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <signal.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 
 typedef struct args
 {
@@ -33,7 +34,7 @@ typedef struct args
 	int			died;
 	long long	f_time;
 	sem_t		*forks;
-	sem_t		*eat;
+	sem_t		*sem_eat;
 	sem_t		*sem_died;
 	sem_t		*sem_incre;
 	sem_t		*print;

@@ -38,18 +38,14 @@ int	eat(t_philo *philo)
 void	*checker(void *ptr)
 {
 	t_philo	*philos;
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
 	philos = (t_philo *)ptr;
 	while (1)
 	{
-		if (philos->args->num_of_eat == philos->args->n_of_philo)
+		if (philos->num_of_eat == philos->args->must_eat)
 		{
-			philos->args->num_of_eat +=1;
-			sem_post(philos->args->sem_post);
+			philos->num_of_eat +=1;
+			sem_post(philos->args->sem_eat);
 			return (0);
 		}
 		sem_wait(philos->args->sem_died);

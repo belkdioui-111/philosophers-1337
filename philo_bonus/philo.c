@@ -16,9 +16,7 @@ int	main(int ac, char **av)
 {
 	t_args	*args;
 	t_philo	*philos;
-	int		i;
-	
-	i = 0;
+
 	if (!check_error_and_load_data(ac, av, &args))
 		return (1);
 	if (!init_philo(&philos, args))
