@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 20:16:11 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:50:50 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ int			check_error_and_load_data(int ac, char **av, t_args **args);
 
 //create semaphore
 void		create_sema(t_args *args);
+void		free_sema(t_args *args);
 
 //initalisation of philo
 int			init_philo(t_philo **philos, t_args *args);

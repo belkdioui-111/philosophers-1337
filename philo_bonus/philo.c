@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 15:17:09 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/23 19:59:52 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:27:50 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	create_sema(args);
-	create_philo(philos);	
+	create_philo(philos);
+	free_all(3, philos, args);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 08:32:38 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/21 15:06:14 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:15:46 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	free_all(int num_free, t_philo *philo, t_args *args)
 	}
 	else if (num_free == 3)
 	{
+		free_sema(args);
+		free(args->pid);
 		free(args);
 		free(philo);
 	}
