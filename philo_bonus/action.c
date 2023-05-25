@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 08:28:53 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/25 16:33:18 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:54:08 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ int	eat(t_philo *philo)
 	return (0);
 }
 
+void	num_eat_equal_must_eat(t_philo *philos)
+{
+	sem_wait(philos->args->sem_incre);
+	if (philos->num_of_eat == philos->args->must_eat)
+	{
+		philos->num_of_eat += 1;
+		sem_post(philos->args->sem_eat);
+	}
+	sem_post(philos->args->sem_incre);
+}
+
 void	*checker(void *ptr)
 {
 	t_philo	*philos;
@@ -41,16 +52,11 @@ void	*checker(void *ptr)
 	philos = (t_philo *)ptr;
 	while (1)
 	{
-		if (philos->num_of_eat == philos->args->must_eat)
-		{
-			philos->num_of_eat += 1;
-			sem_post(philos->args->sem_eat);
-			return (0);
-		}
+		num_eat_equal_must_eat(philos);
 		sem_wait(philos->args->sem_died);
 		sem_wait(philos->args->sem_incre);
 		if (get_curr_time() - philos->last_eat >= philos->args->t_to_die)
-		{	
+		{
 			sem_wait(philos->args->print);
 			printf("%lld %d %s\n", get_curr_time() - philos->args->f_time,
 				philos->id + 1, "died");
