@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 11:31:44 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/04/09 22:08:03 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:11:28 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ int	ft_atoi(const char *str)
 		result += str[i] - '0';
 		i++;
 	}
+	if (str[i] != '\0')
+		return (-1);
 	return (result * sign);
 }

@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 08:28:53 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/21 10:34:09 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:10:33 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	checker(t_philo *philos, int *i)
 {
 	static int	j;
 
+	if (*i == 0)
+		j = 0;
 	if (has_eaten_enough(&philos[*i]))
 		j++;
 	if (j == philos[*i].args->n_of_philo)

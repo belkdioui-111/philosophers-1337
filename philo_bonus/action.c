@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 08:28:53 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/24 16:19:29 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:12:26 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	*checker(void *ptr)
 	philos = (t_philo *)ptr;
 	while (1)
 	{
-		if (philos->num_of_eat == philos->args->must_eat)
+		if (philos->num_of_eat > philos->args->must_eat)
 		{
 			philos->num_of_eat += 1;
 			sem_post(philos->args->sem_eat);
@@ -57,7 +57,7 @@ void	*checker(void *ptr)
 			sem_post(philos->args->sem_incre);
 			exit(1);
 		}
-		sem_wait(philos->args->sem_incre);
+		sem_post(philos->args->sem_incre);
 		sem_post(philos->args->sem_died);
 	}
 	exit(1);

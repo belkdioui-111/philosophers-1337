@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/09 14:58:33 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/24 14:50:50 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:13:50 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void		action(t_philo *philo);
 void		free_all(int num_free, t_philo *philo, t_args *args);
 void		free_mutexes(t_args *args, t_philo *philos, int max_index);
 
-int			create_philo(t_philo *philos);
+void		create_philo(t_philo *philos);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: bel-kdio <bel-kdio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/30 13:05:15 by bel-kdio          #+#    #+#             */
-/*   Updated: 2023/05/24 16:06:01 by bel-kdio         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:12:43 by bel-kdio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	wait_sem_eat(t_philo *philos)
 	}
 }
 
-int	create_philo(t_philo *philos)
+void	create_philo(t_philo *philos)
 {
 	int			i;
 	pthread_t	check_eat;
@@ -57,7 +57,7 @@ int	create_philo(t_philo *philos)
 	{
 		philos->args->pid[i] = fork();
 		if (philos->args->pid[i] == -1)
-			return (-1);
+			exit(0);
 		else if (philos->args->pid[i] == 0)
 			action(&philos[i]);
 		i++;
@@ -69,7 +69,7 @@ int	create_philo(t_philo *philos)
 	while (i < philos->args->n_of_philo)
 	{
 		kill(philos->args->pid[i], SIGKILL);
+		sem_post(philos->args->sem_eat);
 		i++;
 	}
-	return (0);
 }
