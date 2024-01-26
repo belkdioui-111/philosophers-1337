@@ -6,9 +6,6 @@
 - [Features](#features)
 - [Compilation](#compilation)
 - [Usage](#usage)
-- [Bonus](#bonus)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Description
 The Philosopher project is an implementation of the Dining Philosophers problem, a classic synchronization and concurrency problem. The project involves creating a program that simulates philosophers sitting at a dining table, thinking and eating, while addressing issues like deadlock, starvation, and synchronization.
